@@ -1,13 +1,21 @@
 package org.wikipedia.settings;
 
 import android.os.Bundle;
+import android.preference.Preference;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import org.wikipedia.R;
+import org.wikipedia.WikipediaApp;
+import org.wikipedia.history.DeleteAllHistoryTask;
+import org.wikipedia.search.DeleteAllRecentSearchesTask;
+
 
 public class SettingsFragment extends PreferenceLoaderFragment {
+
+    private WikipediaApp app;
+
     public static SettingsFragment newInstance() {
         return new SettingsFragment();
     }
@@ -22,6 +30,7 @@ public class SettingsFragment extends PreferenceLoaderFragment {
     public void loadPreferences() {
         SettingsPreferenceLoader preferenceLoader = new SettingsPreferenceLoader(this);
         preferenceLoader.loadPreferences();
+        setupRememberHistoryButton(findPreference(getString(R.string.preference_key_remember_history)));
     }
 
     @Override
@@ -64,4 +73,23 @@ public class SettingsFragment extends PreferenceLoaderFragment {
     private void invalidateOptionsMenu() {
         getFragmentManager().invalidateOptionsMenu();
     }
+
+    private void setupRememberHistoryButton(Preference button) {
+        button.setOnPreferenceChangeListener(rememberHistoryChangeListener());
+    }
+
+    private Preference.OnPreferenceChangeListener rememberHistoryChangeListener() {
+        return new Preference.OnPreferenceChangeListener() {
+            @Override
+            public boolean onPreferenceChange(Preference preference, Object newValue) {
+                if  (!(Boolean) newValue)  {
+                    app = (WikipediaApp) getActivity().getApplicationContext();
+                    new DeleteAllHistoryTask(app).execute();
+                    new DeleteAllRecentSearchesTask(app).execute();
+                }
+                return true;
+            }
+        };
+    }
+
 }

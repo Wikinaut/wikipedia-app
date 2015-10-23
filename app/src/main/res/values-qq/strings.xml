@@ -186,6 +186,8 @@ See also:
   <string name="preferences_general_heading">Preferences general heading.
 {{Identical|General}}</string>
   <string name="wikipedia_app_faq">Label for a preferences menu link to the FAQ (frequently asked questions) wiki page for the Wikipedia apps for Android and iOS.</string>
+  <string name="preference_title_remember_history">Title of preference to activate or deactivate and delete the article and search history.</string>
+  <string name="preference_summary_remember_history">Description of preference to activate or deactivate and delete the article and search history.</string>
   <string name="zero_charged_verbiage">Text for toast connoting that Wikipedia Zero status went to OFF</string>
   <string name="zero_charged_verbiage_extended">Extended text describing that further usage of the app may in fact incur data charges because Wikipedia Zero is off.</string>
   <string name="zero_search_hint">Searchbar hint incorporting notion that user is searching via Wikipedia Zero so it is free</string>
@@ -295,6 +297,7 @@ Please test the URL to make sure it works</string>
   <string name="page_similar_titles">Button label for showing a list of similar titles (disambiguation) for the current page</string>
   <string name="search_did_you_mean">Label that gives the user a suggestion for a better search term, instead of the one that the user gave. The \"%s\" symbol is replaced with the suggestion.</string>
   <string name="search_recent_header">Label at the top of the list of recent searches that the user performed.</string>
+  <string name="remember_search_history_is_disabled_message">Explanation that the history is empty because the privacy setting \"Remember history\" is disabled and hint that the user can change it there.</string>
   <string name="button_clear_all_recent_searches">Button hint for clearing search history;  visible when in search mode.</string>
   <string name="clear_recent_searches_confirm">Dialog message that asks if the user really wants to clear the search history.</string>
   <string name="error_browser_not_found">Toast message shown when we try to open an external browser but none seems to be installed.</string>

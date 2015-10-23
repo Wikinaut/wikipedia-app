@@ -32,22 +32,27 @@
             android:title="@string/preference_title_auto_upload_crash_reports"
             android:summary="@string/preference_summary_auto_upload_crash_reports"
             />
+        <org.wikipedia.settings.CheckBoxPreferenceMultiLine
+            android:key="@string/preference_key_remember_history"
+            android:defaultValue="true"
+            android:title="@string/preference_title_remember_history"
+            android:summary="@string/preference_summary_remember_history"
+            />
     </PreferenceCategory>
     <PreferenceCategory android:title="@string/zero_wikipedia_zero_heading">
         <org.wikipedia.settings.CheckBoxPreferenceMultiLine
-                android:key="zero_warn_when_leaving"
-                android:title="@string/zero_warn_when_leaving"
-                android:defaultValue="true"
-                android:summary="@string/zero_warn_when_leaving_summary"
-                />
+            android:key="zero_warn_when_leaving"
+            android:title="@string/zero_warn_when_leaving"
+            android:defaultValue="true"
+            android:summary="@string/zero_warn_when_leaving_summary"
+            />
         <org.wikipedia.settings.PreferenceMultiLine
-                android:title="@string/zero_webpage_title"
-                android:summary="@string/zero_webpage_url">
+            android:title="@string/zero_webpage_title"
+            android:summary="@string/zero_webpage_url">
             <intent android:action="android.intent.action.VIEW"
                     android:data="@string/zero_webpage_url"
-                    />
+                />
         </org.wikipedia.settings.PreferenceMultiLine>
-
     </PreferenceCategory>
     <PreferenceCategory android:title="@string/about_activity_title">
         <org.wikipedia.settings.PreferenceMultiLine

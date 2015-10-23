@@ -10,6 +10,7 @@ import org.wikipedia.events.WikipediaZeroStateChangeEvent;
 import org.wikipedia.history.HistoryEntry;
 import org.wikipedia.page.PageActivity;
 import org.wikipedia.settings.LanguagePreferenceDialog;
+import org.wikipedia.settings.Prefs;
 
 import com.squareup.otto.Subscribe;
 
@@ -333,14 +334,20 @@ public class SearchArticlesFragment extends Fragment implements BackPressedHandl
             searchView.setIconified(false);
             searchView.requestFocusFromTouch();
 
-            // if we already have a previous search query, then put it into the SearchView, and it will
-            // automatically trigger the showing of the corresponding search results.
-            if (isValidQuery(lastSearchedText)) {
-                searchView.setQuery(lastSearchedText, false);
-                // automatically select all text in the search field, so that typing a new character
-                // will clear it by default
-                if (searchEditText != null) {
-                    searchEditText.selectAll();
+            if (!Prefs.isRememberHistoryEnabled()) {
+                // incognito mode always clears a previous search query
+                searchView.setQuery("", false);
+                searchEditText.setText("");
+            } else {
+                // if we already have a previous search query, then put it into the SearchView, and it will
+                // automatically trigger the showing of the corresponding search results.
+                if (isValidQuery(lastSearchedText)) {
+                    searchView.setQuery(lastSearchedText, false);
+                    // automatically select all text in the search field, so that typing a new character
+                    // will clear it by default
+                    if (searchEditText != null) {
+                        searchEditText.selectAll();
+                    }
                 }
             }
             searchButton.setVisibility(View.GONE);
@@ -414,7 +421,7 @@ public class SearchArticlesFragment extends Fragment implements BackPressedHandl
     }
 
     private void addRecentSearch(String title) {
-        if (isValidQuery(title)) {
+        if (isValidQuery(title) && Prefs.isRememberHistoryEnabled()) {
             new SaveRecentSearchTask(new RecentSearch(title)).execute();
         }
     }

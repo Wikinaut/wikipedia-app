@@ -1,8 +1,11 @@
 package org.wikipedia.search;
 
 import org.wikipedia.R;
+import org.wikipedia.settings.Prefs;
+
 import android.content.Context;
 import android.database.Cursor;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
@@ -25,6 +28,7 @@ public class RecentSearchesFragment extends Fragment implements LoaderManager.Lo
     private SearchArticlesFragment searchFragment;
     private View container;
     private ListView recentSearchesList;
+    private TextView recentSearchesHeader;
     private RecentSearchesAdapter adapter;
     private ImageView deleteButton;
 
@@ -37,8 +41,23 @@ public class RecentSearchesFragment extends Fragment implements LoaderManager.Lo
         searchFragment = (SearchArticlesFragment)getActivity().getSupportFragmentManager().findFragmentById(R.id.search_fragment);
         this.container = rootView.findViewById(R.id.recent_searches_container);
         recentSearchesList = (ListView) rootView.findViewById(R.id.recent_searches_list);
+        recentSearchesHeader = (TextView) rootView.findViewById(R.id.recent_searches_header);
         deleteButton = (ImageView) rootView.findViewById(R.id.recent_searches_delete_button);
         return rootView;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (Prefs.isRememberHistoryEnabled()) {
+            deleteButton.setVisibility(View.VISIBLE);
+            recentSearchesHeader.setText(R.string.search_recent_header);
+            recentSearchesHeader.setTypeface(null, Typeface.BOLD);
+        } else {
+            deleteButton.setVisibility(View.INVISIBLE);
+            recentSearchesHeader.setText(R.string.remember_search_history_is_disabled_message);
+            recentSearchesHeader.setTypeface(null, Typeface.NORMAL);
+        }
     }
 
     public void show() {

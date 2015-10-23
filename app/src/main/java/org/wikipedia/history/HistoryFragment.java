@@ -31,6 +31,7 @@ import org.wikipedia.R;
 import org.wikipedia.WikipediaApp;
 import org.wikipedia.page.PageActivity;
 import org.wikipedia.pageimages.PageImage;
+import org.wikipedia.settings.Prefs;
 
 import java.text.DateFormat;
 import java.util.Date;
@@ -45,6 +46,7 @@ public class HistoryFragment extends Fragment implements LoaderManager.LoaderCal
     private View historyEmptyContainer;
     private TextView historyEmptyTitle;
     private TextView historyEmptyMessage;
+    private MenuItem deleteMenuButton;
     private HistoryEntryAdapter adapter;
     private EditText entryFilter;
 
@@ -305,6 +307,7 @@ public class HistoryFragment extends Fragment implements LoaderManager.LoaderCal
             return;
         }
         inflater.inflate(R.menu.menu_history, menu);
+        deleteMenuButton = menu.findItem(R.id.menu_clear_all_history);
     }
 
     @Override
@@ -313,9 +316,15 @@ public class HistoryFragment extends Fragment implements LoaderManager.LoaderCal
         if (!isAdded() || ((PageActivity)getActivity()).isSearching()) {
             return;
         }
-        menu.findItem(R.id.menu_clear_all_history)
-            .setVisible(historyEntryList.getCount() > 0)
-            .setEnabled(historyEntryList.getCount() > 0);
+        if (Prefs.isRememberHistoryEnabled()) {
+            deleteMenuButton
+                    .setVisible(historyEntryList.getCount() > 0)
+                    .setEnabled(historyEntryList.getCount() > 0);
+            historyEmptyMessage.setText(R.string.history_empty_message);
+        } else {
+            deleteMenuButton.setVisible(false);
+            historyEmptyMessage.setText(R.string.remember_history_is_disabled_message);
+        }
     }
 
     @Override

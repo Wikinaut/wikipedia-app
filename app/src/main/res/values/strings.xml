@@ -112,6 +112,7 @@
     <string name="saved_pages_empty_message">Saved pages are pretty awesome. Think of them as bookmarks that you can read even when you are offline.</string>
     <string name="history_empty_title">No recent pages here!</string>
     <string name="history_empty_message">You probably deleted all of them. Next time you go to a page you can get back to it from here.</string>
+    <string name="remember_history_is_disabled_message">The history is disabled in the settings, where it could be enabled.</string>
     <string name="delete_selected_history">Delete</string>
     <string name="wp_stylized"><![CDATA[<big>W</big>IKIPEDI<big>A</big>]]></string>
     <string name="create_account_username_hint">Username</string>
@@ -137,6 +138,8 @@
     <string name="create_account_button">Create account</string>
     <string name="preferences_general_heading">General</string>
     <string name="wikipedia_app_faq">Wikipedia App FAQ</string>
+    <string name="preference_title_remember_history">Remember history</string>
+    <string name="preference_summary_remember_history">Activate or deactivate and delete your article and search history.</string>
     <string name="zero_charged_verbiage">Wikipedia Zero is off</string>
     <string name="zero_charged_verbiage_extended">Loading other articles may incur data charges.</string>
     <string name="zero_search_hint">Search Wikipedia Zero</string>
@@ -216,6 +219,7 @@
     <string name="page_similar_titles">Similar pages</string>
     <string name="search_did_you_mean">Did you mean \"%s\"?</string>
     <string name="search_recent_header">Recent searches:</string>
+    <string name="remember_search_history_is_disabled_message">The search history is disabled in the settings, where it could be enabled.</string>
     <string name="button_clear_all_recent_searches">Clear recent searches</string>
     <string name="clear_recent_searches_confirm">Are you sure you want to clear your search history?</string>
     <string name="error_browser_not_found">Could not open web page (no browser app found).</string>
